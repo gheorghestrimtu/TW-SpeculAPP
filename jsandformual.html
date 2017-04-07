@@ -1,0 +1,45 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+<link rel="stylesheet" type="text/css" href="navmenu.css" />
+</head>
+<body>
+
+
+<ul>
+  <li><a class="active" href="#home">Home</a></li>
+  <li><a href="#news">News</a></li>
+  <li><a href="#contact">Contact</a></li>
+  <li><a href="#about">About</a></li>
+</ul>
+
+
+<img src="speculapp.png" alt="logo" >
+
+<div id="div1">
+<form id="myForm" action="dbt.php">
+  <label for="name">First Name</label><br>
+  <input type="text" id="name" name="name" ><br>
+  <label for="surname">Last Name</label><br>
+  <input type="password" id="surname" name="surname" ><br>
+  <input style="display:none" type="submit" value="Submit">
+</form> 
+<button id="login" onclick="myFunction()">Log in</button>
+</div>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+    var x = document.getElementById("myForm");
+    if(x.elements[0].value!=""&&x.elements[1].value!="") {x.submit();}
+    else{
+    document.getElementById("demo").innerHTML="All boxes must be filled";}
+}
+</script>
+
+</body>
+</html>
