@@ -10,13 +10,13 @@ session_start();
 	<legend>Currency 1</legend>
 		<input type="radio" name="currency1" value="RON" checked> RON<br>
 		<input type="radio" name="currency1" value="EUR"> EUR<br>
-		<input type="radio" name="currency1" value="DOL"> DOL
+		<input type="radio" name="currency1" value="USD"> USD
 	</fieldset>
 	<fieldset>
 	<legend>Currency 2</legend>
 		<input type="radio" name="currency2" value="RON" checked> RON<br>
 		<input type="radio" name="currency2" value="EUR"> EUR<br>
-		<input type="radio" name="currency2" value="DOL"> DOL
+		<input type="radio" name="currency2" value="USD"> USD
 	</fieldset>
 	<fieldset>
 	<legend>Sum</legend>

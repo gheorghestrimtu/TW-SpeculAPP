@@ -38,6 +38,46 @@ while ($row = oci_fetch_array($stid, OCI_NUM)) {
 		$_SESSION["name"]=$row[0];
 		$_SESSION["surname"]=$row[1];
 		$_SESSION["uid"]=$row[2];
+		$sti = oci_parse($conn, 'SELECT MAX(SESION_ID) FROM SESION ');
+		if (!$sti) {
+			$e = oci_error($conn);
+			trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+		}
+
+		// Perform the logic of the query
+		$re = oci_execute($sti);
+		if (!$re) {
+		$e = oci_error($sti);
+		trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+		}
+		$ro=oci_fetch_array($sti,OCI_NUM);
+		$_SESSION["sesion"]=$ro[0]+1;
+		print($ro[0].' '.$_SESSION["sesion"]);
+		oci_free_statement($sti);
+		$sti = oci_parse($conn, 'DECLARE 
+		v_datestart DATE; 
+		BEGIN 
+		select sysdate into v_datestart from dual;
+		insert into Sesion values(:newsesion, :myid, v_datestart, v_datestart);
+		END;');
+		$newSesionId=$_SESSION["sesion"];
+		$id=$_SESSION["uid"];
+		oci_bind_by_name($sti,':myid',$id);
+		oci_bind_by_name($sti,':newsesion',$newSesionId);
+		if (!$sti) {
+			$e = oci_error($conn);
+			trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+		}
+
+		// Perform the logic of the query
+		$re = oci_execute($sti);
+		if (!$re) {
+		$e = oci_error($sti);
+		trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+		}
+		oci_free_statement($sti);
+		//following line of code is temporary
+		$_SESSION["game"]=1;
 	}
 }
 
