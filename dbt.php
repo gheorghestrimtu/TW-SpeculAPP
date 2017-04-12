@@ -143,7 +143,7 @@ while ($row = oci_fetch_array($stid, OCI_NUM)) {
 		//following line of code is temporary
 		$_SESSION["game"]=1;
 	}
-}
+}*/
 
 if($connected){
 	header("Location: choice.html");
