@@ -25,7 +25,6 @@ if (!$stid) {
     trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
 }
 The "old" version of the SELECT statement END*/
-}
 
 // SQLi-vulnerable code BEGIN											Gheorghe' --."' AND LAST_NAME = '".$surname."' "
 echo ("SELECT FIRST_NAME, LAST_NAME, USER_ID FROM USERS WHERE FIRST_NAME = '".$name."' AND LAST_NAME = '".$surname."' ");
@@ -65,11 +64,9 @@ if($row){
 		$_SESSION["sesion"]=$ro[0]+1;
 		print($ro[0].' '.$_SESSION["sesion"]);
 		oci_free_statement($sti);
-		$sti = oci_parse($conn, 'DECLARE 
-		v_datestart DATE; 
+		$sti = oci_parse($conn, '
 		BEGIN 
-		select sysdate into v_datestart from dual;
-		insert into Sesion values(:newsesion, :myid, v_datestart, v_datestart);
+		manager_sesiune.insert_session(:newsesion, :myid);
 		END;');
 		$newSesionId=$_SESSION["sesion"];
 		$id=$_SESSION["uid"];
