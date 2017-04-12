@@ -4,7 +4,8 @@ session_start();
 <!DOCTYPE html>
 <html>
 <head>
-	<title>jQuery plugin: Tablesorter 2.0 - Pager plugin</title>
+	<title>Sessions</title>
+	<link rel="stylesheet" type="text/css" href="navmenu.css" />
 	<link rel="stylesheet" href="http://tablesorter.com/docs/css/jq.css" type="text/css" media="print, projection, screen" />
 	<link rel="stylesheet" href="http://tablesorter.com/themes/blue/style.css" type="text/css" media="print, projection, screen" />
 	<script type="text/javascript" src="http://tablesorter.com/jquery-latest.js"></script>
@@ -22,12 +23,22 @@ session_start();
 	<link rel="stylesheet" type="text/css" href="http://tablesorter.com/docs/js/chili/javascript.css">
 </head>
 <body>
-
+<nav>
+<ul>
+  <li><a href="home.php">Home</a></li>
+  <li><a href="contact.php">Contact</a></li>
+  <li><a href="about.php">About</a></li>
+  <li><a href="jsandformual.html">Login</a></li>
+  <li><a href="signup.php">Signup</a></li>
+</ul>
+</nav>
+<section id="deletesessionbutton">
 <form action="deletesession.php">
 	<label for="delete">Delete Session No.</label><br>
 	<input type="text" id="delete" name="delete" ><br>
 	<input type="submit" value="Submit">
 </form>
+</section>
 
 <?php
 $conn = oci_connect('speculapp', 'SPECULAPP', 'localhost/XE');
@@ -66,8 +77,9 @@ if (!$r2) {
 }
 
 // Fetch the results of the query
+print('<section id="sessiontable">');
 print('<table id="myTable" class="tablesorter" border="1">');
-print('<thead><tr><th>1</th><th>2</th><th>3</th><th>4</th></thead>');
+print('<thead><tr><th>Session ID</th><th>User ID</th><th>Start time</th><th>End time</th></thead>');
 print('<tbody>');
 while ($row = oci_fetch_array($stid2, OCI_ASSOC+OCI_RETURN_NULLS)) {
     print "<tr>\n";
@@ -78,6 +90,7 @@ while ($row = oci_fetch_array($stid2, OCI_ASSOC+OCI_RETURN_NULLS)) {
 }
 print('</tbody>');
 print "</table>";
+print('</section>');
 
 oci_free_statement($stid2);
 
