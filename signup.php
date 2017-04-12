@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Login</title>
+<title>Sign up</title>
 <link rel="stylesheet" type="text/css" href="navmenu.css" />
 </head>
 <body>
@@ -17,16 +17,16 @@
   <li><a href="signup.php">Signup</a></li>
 </ul>
 
-<section id="loginform">
+<section id="signupform">
 <div id="div1">
-<form id="myForm" action="dbt.php">
+<form id="myForm" action="">
   <label for="name">First Name</label><br>
   <input type="text" id="name" name="name" ><br>
   <label for="surname">Last Name</label><br>
   <input type="password" id="surname" name="surname" ><br>
   <input style="display:none" type="submit" value="Submit">
 </form> 
-<button id="login" onclick="myFunction()">Log in</button>
+<button id="signup" onclick="myFunction()">Sign up</button>
 </div>
 </section>
 

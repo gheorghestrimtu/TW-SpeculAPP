@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>Homepage</title>
 <link rel="stylesheet" type="text/css" href="navmenu.css" />
 </head>
 <body>
@@ -13,11 +14,14 @@
   <li><a href="signup.php">Signup</a></li>
 </ul>
 </nav>
-	<form action="sessions.php">
-	<input type="submit" value="see sessions" ></input>
-	</form>
-	<form action="exper.php">
-	<input type="submit" value="initiate transaction"></input>
-	</form>
+
+<section id="names">
+<p id="creator"> Game Creators</p>
+<p> Iaroslav Mazur <a target="_blank" href="https://www.facebook.com/Mazur.Iaroslav" > <img id="fb" src="fb.png" > </a></p>
+<p> Gheorghe Strîmtu <a target="_blank" href="https://www.facebook.com/Uimitorul"> <img id="fb" src="fb.png" ></a></p>
+</section>
+
+
+
 </body>
 </html>
