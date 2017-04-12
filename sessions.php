@@ -40,7 +40,7 @@ $p = $_SESSION["uid"];
 $name=$_SESSION["name"];
 $surname=$_SESSION["surname"];
 
-$stid = oci_parse($conn, 'begin :r := number_of_sessions(:p); end;');
+$stid = oci_parse($conn, 'begin :r := manager_sesiune.number_of_sessions(:p); end;');
 oci_bind_by_name($stid, ':p', $p);
 oci_bind_by_name($stid, ':r', $r, 40);
 
