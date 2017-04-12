@@ -16,14 +16,13 @@ if (!$conn) {
     trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
 }
 
-/* The "old" version of the SELECT statement BEGIN
-
 // Prepare the statement
 $stid = oci_parse($conn, 'SELECT FIRST_NAME, LAST_NAME, USER_ID FROM USERS');
 if (!$stid) {
     $e = oci_error($conn);
     trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
 }
+
 The "old" version of the SELECT statement END*/
 
 // SQLi-vulnerable code BEGIN											Gheorghe' --."' AND LAST_NAME = '".$surname."' "
@@ -42,8 +41,7 @@ if (!$r) {
 }
 
 $connected=false;
-$row = oci_fetch_array($stid, OCI_NUM);
-if($row){
+$row = oci_fetch_array($stid, OCI_NUM);if($row){
 		$connected=true;
 		$_SESSION["name"]=$row[0];
 		$_SESSION["surname"]=$row[1];
@@ -125,12 +123,7 @@ while ($row = oci_fetch_array($stid, OCI_NUM)) {
 		$_SESSION["sesion"]=$ro[0]+1;
 		print($ro[0].' '.$_SESSION["sesion"]);
 		oci_free_statement($sti);
-		$sti = oci_parse($conn, 'DECLARE 
-		v_datestart DATE; 
-		BEGIN 
-		select sysdate into v_datestart from dual;
-		insert into Sesion values(:newsesion, :myid, v_datestart, v_datestart);
-		END;');
+		$sti = oci_parse($conn, 'begin manager_sesiune.insert_session(:newsesion,:myid); end;');
 		$newSesionId=$_SESSION["sesion"];
 		$id=$_SESSION["uid"];
 		oci_bind_by_name($sti,':myid',$id);
@@ -151,8 +144,6 @@ while ($row = oci_fetch_array($stid, OCI_NUM)) {
 		$_SESSION["game"]=1;
 	}
 }
-
-End SQLi-INvulnerable code*/
 
 if($connected){
 	header("Location: choice.html");
