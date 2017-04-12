@@ -23,6 +23,12 @@ session_start();
 </head>
 <body>
 
+<form action="deletesession.php">
+	<label for="delete">Delete Session No.</label><br>
+	<input type="text" id="delete" name="delete" ><br>
+	<input type="submit" value="Submit">
+</form>
+
 <?php
 $conn = oci_connect('speculapp', 'SPECULAPP', 'localhost/XE');
 if (!$conn) {
