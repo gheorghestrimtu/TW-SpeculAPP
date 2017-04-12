@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>Homepage</title>
 <link rel="stylesheet" type="text/css" href="navmenu.css" />
 </head>
 <body>
@@ -13,11 +14,10 @@
   <li><a href="signup.php">Signup</a></li>
 </ul>
 </nav>
-	<form action="sessions.php">
-	<input type="submit" value="see sessions" ></input>
-	</form>
-	<form action="exper.php">
-	<input type="submit" value="initiate transaction"></input>
-	</form>
+
+<img src="speculapp.png" id="logo" >
+
+
+
 </body>
 </html>
