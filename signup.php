@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Sign up</title>
+<title>Signup</title>
 <link rel="stylesheet" type="text/css" href="navmenu.css" />
 </head>
 <body>
@@ -21,8 +21,8 @@
 <form id="myForm2" action="" onsubmit="return myFunction()">
   <input type="text" id="firstname" name="firstname" placeholder="First Name"> <br>
   <input type="text" id="lastname" name="lastname" placeholder="Last Name"> <br>
-  <input type="text" id="email" name="email" placeholder="email" ><br>
-  <input type="password" id="password" name="password" placeholder="password"><br>
+  <input type="text" id="email" name="email" placeholder="E-mail" ><br>
+  <input type="password" id="password" name="password" placeholder="Password"><br>
   <input id="sub" type="submit" value="Submit">
   <p class="message">Already registered? <a href="jsandformual.html">Sign In</a></p>
 </form> 

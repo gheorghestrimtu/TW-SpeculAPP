@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Homepage</title>
+<title>Contact</title>
 <link rel="stylesheet" type="text/css" href="navmenu.css" />
 </head>
 <body>
@@ -17,8 +17,8 @@
 
 <section id="names">
 <p id="creator"> Game Creators</p>
-<p> Iaroslav Mazur <a target="_blank" href="https://www.facebook.com/Mazur.Iaroslav" > <img id="fb" src="fb.png" > </a></p>
 <p> Gheorghe Strîmtu <a target="_blank" href="https://www.facebook.com/Uimitorul"> <img id="fb" src="fb.png" ></a></p>
+<p> Iaroslav Mazur <a target="_blank" href="https://www.facebook.com/Mazur.Iaroslav" > <img id="fb" src="fb.png" > </a></p>
 </section>
 
 
