@@ -17,27 +17,26 @@
   <li><a href="signup.php">Signup</a></li>
 </ul>
 
-<section id="signupform">
-<div id="div1">
-<form id="myForm" action="">
-  <label for="name">First Name</label><br>
-  <input type="text" id="name" name="name" ><br>
-  <label for="surname">Last Name</label><br>
-  <input type="password" id="surname" name="surname" ><br>
-  <input style="display:none" type="submit" value="Submit">
+<section id="signupform" >
+<form id="myForm2" action="" onsubmit="return myFunction()">
+  <input type="text" id="firstname" name="firstname" placeholder="First Name"> <br>
+  <input type="text" id="lastname" name="lastname" placeholder="Last Name"> <br>
+  <input type="text" id="email" name="email" placeholder="email" ><br>
+  <input type="password" id="password" name="password" placeholder="password"><br>
+  <input id="sub" type="submit" value="Submit">
+  <p class="message">Already registered? <a href="jsandformual.html">Sign In</a></p>
 </form> 
-<button id="signup" onclick="myFunction()">Sign up</button>
-</div>
 </section>
 
 <p id="demo"></p>
 
 <script>
 function myFunction() {
-    var x = document.getElementById("myForm");
-    if(x.elements[0].value!=""&&x.elements[1].value!="") {x.submit();}
+    var x = document.getElementById("myForm2");
+    if(x.elements[0].value!=""&&x.elements[1].value!=""&&x.elements[2]!=""&&x.elements[3]!="") {x.submit();}
     else{
     document.getElementById("demo").innerHTML="All boxes must be filled";}
+	return false;
 }
 </script>
 

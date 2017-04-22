@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,13 +24,13 @@
 </head>
 <body>
 <nav>
-<ul>
-  <li><a href="home.php">Home</a></li>
-  <li><a href="contact.php">Contact</a></li>
-  <li><a href="about.php">About</a></li>
-  <li><a href="jsandformual.html">Login</a></li>
-  <li><a href="signup.php">Signup</a></li>
-</ul>
+	<ul>
+		<li><a href="home.php">Home</a></li>
+		<li><a href="contact.php">Contact</a></li>
+		<li><a href="about.php">About</a></li>
+		<li><a href="jsandformual.html">Login</a></li>
+		<li><a href="signup.php">Signup</a></li>
+	</ul>
 </nav>
 <!--<div style="display:none">
 	<form action="sessions.php"  >
@@ -38,15 +41,15 @@
 	</form>
 </div> -->
 <div class="menu1">
-<div class="upperleft">
-<section id="deletesessionbutton">
-<form action="deletesession.php">
-	<label for="delete">Delete Session No.</label><br>
-	<input type="text" id="delete" name="delete" ><br>
-	<input type="submit" value="Submit">
-</form>
-</section>
-
+	<div class="upperleft">
+		<section id="deletesessionbutton">
+			<form action="deletesession.php">
+				<label for="delete">Delete Session No.</label><br>
+				<input type="text" id="delete" name="delete" ><br>
+				<input type="submit" value="Submit" id="sub">
+			</form>
+		</section>
+<!-- The session information table is created -->
 <?php
 $conn = oci_connect('speculapp', 'SPECULAPP', 'localhost/XE');
 if (!$conn) {
@@ -64,7 +67,7 @@ oci_bind_by_name($stid, ':r', $r, 40);
 
 oci_execute($stid);
 
-print "<p>Number of sessions for user: $name $surname: $r </p>";   // prints 24
+print "<p id=\"deletesessionbutton\" >Number of sessions for user: $name $surname: $r </p>";   // prints 24
 
 oci_free_statement($stid);
 
@@ -104,31 +107,37 @@ oci_free_statement($stid2);
 oci_close($conn);
 ?>
 
-<div id="pager" class="pager">
-	<form>
-		<img src="http://tablesorter.com/addons/pager/icons/first.png" class="first"/>
-		<img src="http://tablesorter.com/addons/pager/icons/prev.png" class="prev"/>
-		<input type="text" class="pagedisplay"/>
-		<img src="http://tablesorter.com/addons/pager/icons/next.png" class="next"/>
-		<img src="http://tablesorter.com/addons/pager/icons/last.png" class="last"/>
-		<select class="pagesize">
-			<option selected="selected"  value="10">10</option>
-			<option value="20">20</option>
-			<option value="30">30</option>
-			<option  value="40">40</option>
-		</select>
-	</form>
-</div>
+		<div id="pager" class="pager">
+			<form>
+				<img src="http://tablesorter.com/addons/pager/icons/first.png" class="first"/>
+				<img src="http://tablesorter.com/addons/pager/icons/prev.png" class="prev"/>
+				<input type="text" class="pagedisplay"/>
+				<img src="http://tablesorter.com/addons/pager/icons/next.png" class="next"/>
+				<img src="http://tablesorter.com/addons/pager/icons/last.png" class="last"/>
+				<select class="pagesize" style="display:none" >
+					<option selected="selected"  value="10">10</option>
+					<option value="20">20</option>
+					<option value="30">30</option>
+					<option  value="40">40</option> 
+				</select>
+		
+			</form>
+		</div>
 
-</div>
-<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
-<script type="text/javascript">
-_uacct = "UA-2189649-2";
-urchinTracker();
-</script>
-
-</div>
-<div class="upperright"></div>
+	<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	_uacct = "UA-2189649-2";
+	urchinTracker();
+	</script>
+	</div>
+	<!-- End of creation of session information table -->
+	<div class="upperright">
+		<p class="par"> Games Won: </p>
+		<p> Games Lost: </p>
+		<form action="game.php" method="get">
+			<button class="newgame" type="submit">new game</button>
+		</form>
+	</div>
 </div>
 <div class="menu2">
 <div class="lowleft"></div>
