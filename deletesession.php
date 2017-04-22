@@ -26,12 +26,8 @@ if (!$r) {
 
 oci_free_statement($stid);
 oci_close($conn);
+header("Location: choice.php");
 ?>
 
 
-oci_free_statement($stid);
-oci_close($conn);
-
-?>
-	
 

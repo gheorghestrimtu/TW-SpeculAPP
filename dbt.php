@@ -16,7 +16,7 @@ if (!$conn) {
     trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
 }
 
-/* The "old" version of the SELECT statement BEGIN
+//The "old" version of the SELECT statement BEGIN
 
 // Prepare the statement
 $stid = oci_parse($conn, 'SELECT FIRST_NAME, LAST_NAME, USER_ID FROM USERS');
@@ -24,10 +24,10 @@ if (!$stid) {
     $e = oci_error($conn);
     trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
 }
-The "old" version of the SELECT statement END*/
+//The "old" version of the SELECT statement END*/
 
 // SQLi-vulnerable code BEGIN											Gheorghe' --."' AND LAST_NAME = '".$surname."' "
-echo ("SELECT FIRST_NAME, LAST_NAME, USER_ID FROM USERS WHERE FIRST_NAME = '".$name."' AND LAST_NAME = '".$surname."' ");
+/*echo ("SELECT FIRST_NAME, LAST_NAME, USER_ID FROM USERS WHERE FIRST_NAME = '".$name."' AND LAST_NAME = '".$surname."' ");
 $stid = oci_parse($conn, "SELECT FIRST_NAME, LAST_NAME, USER_ID FROM USERS WHERE FIRST_NAME = '".$name."' AND LAST_NAME = '".$surname."' ");
 if (!$stid) {
     $e = oci_error($conn);
@@ -90,9 +90,9 @@ if($row){
 
 // End SQLi-vulnerable code
 
+*/
 
-
-/* Begin SQLi-INvulnerable code
+// Begin SQLi-INvulnerable code
 
 // Perform the logic of the query
 $r = oci_execute($stid);
@@ -150,12 +150,12 @@ while ($row = oci_fetch_array($stid, OCI_NUM)) {
 		//following line of code is temporary
 		$_SESSION["game"]=1;
 	}
-}
+}*/
 
-End SQLi-INvulnerable code*/
+//End SQLi-INvulnerable code
 
 if($connected){
-	header("Location: choice.html");
+	header("Location: choice.php");
 }else{
 	header("Location: failure.html");
 }

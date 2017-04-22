@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-<head><title>Esuare</title>
+<head>
+<title>Homepage</title>
 <link rel="stylesheet" type="text/css" href="navmenu.css" />
 </head>
 <body>
@@ -13,6 +14,14 @@
   <li><a href="signup.php">Signup</a></li>
 </ul>
 </nav>
-<h1>Autentificare Esuata</h1>
+
+<section id="names">
+<p id="creator"> Game Creators</p>
+<p> Iaroslav Mazur <a target="_blank" href="https://www.facebook.com/Mazur.Iaroslav" > <img id="fb" src="fb.png" > </a></p>
+<p> Gheorghe Strîmtu <a target="_blank" href="https://www.facebook.com/Uimitorul"> <img id="fb" src="fb.png" ></a></p>
+</section>
+
+
+
 </body>
 </html>

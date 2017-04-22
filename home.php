@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-<head><title>Esuare</title>
+<head>
+<title>Homepage</title>
 <link rel="stylesheet" type="text/css" href="navmenu.css" />
 </head>
 <body>
@@ -13,6 +14,10 @@
   <li><a href="signup.php">Signup</a></li>
 </ul>
 </nav>
-<h1>Autentificare Esuata</h1>
+
+<img src="speculapp.png" id="logo" >
+
+
+
 </body>
 </html>
