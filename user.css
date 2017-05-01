@@ -10,8 +10,7 @@
 	float: left;
 	width:49%;
 	height:480px;
-	border-bottom: 8px solid black;
-	border-top: 8px solid black;
+	border-bottom: 8px solid black;	border-top: 8px solid black;
     background-color: rgba(0,0,0,0.7);
 	text-align:center;
 }
