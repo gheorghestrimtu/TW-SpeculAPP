@@ -1,20 +1,48 @@
+
+<?php
+	session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
 <title>About</title>
-<link rel="stylesheet" type="text/css" href="navmenu.css" />
+
+	<link rel="stylesheet" type="text/css" href="navbar.css" />	
+	<link rel="stylesheet" type="text/css" href="about.css" />
+
 </head>
 <body>
+	<nav>
+		<ul class="navigation">
+			<?php	
+				if(isset($_SESSION["logged"])){					echo '<li><a href="choice.php">Home</a></li>';
+				}
+				else{
+					echo '<li><a href="home.php">Home</a></li>';
+				}
+			?>  
+			<li><a href="contact.php">Contact</a></li>
+			<li><a class="active" href="about.php">About</a></li>
+			<li><a href="login.php">Login</a></li>
+			<li><a href="signup.php">Signup</a></li>
+			<?php	
+				if(isset($_SESSION["logged"])){
+					echo '<li style="float:right"><a href="logout.php">Logout</a></li>';
+				}
+			?>  
+		</ul>
+	</nav>
+
+<section id="about">
+<b>SpeculAPP</b> este un joc Web care simuleaza operatiuni de specula valutara. <br> <br> <br>
+
+Administratorul stabileste valutele (EUR, USD, GBP, etc.), 
+marjele de randomizare a cursului, durata de valabilitate a cursului (in secunde), suma de inceput (in RON), pragul de castig (e.g., peste 2000 RON) 
+si pragul de pierdere (de pilda, sub 100 RON). <br> <br> <br>
 
 
-<ul>
-  <li><a href="home.php">Home</a></li>
-  <li><a href="contact.php">Contact</a></li>
-  <li><a href="about.php">About</a></li>
-  <li><a href="jsandformual.html">Login</a></li>
-  <li><a href="signup.php">Signup</a></li>
-</ul>
-
+  
 <section id="about">
 <b>SpeculAPP</b> este un joc Web care simuleaza operatiuni de specula valutara. <br> <br> <br>
 

@@ -9,7 +9,7 @@
 .console1{
 	float:left;
 	position:relative;
-	width:33%;
+	width:63%;
 	margin-top: 4%;
 	height:480px;
 	border-bottom: 8px solid black;
@@ -18,11 +18,7 @@
 	text-align:center;
 }
 
-.curs{
-	margin-top: 15%;
-}
-
-.aflacurs, .exchange{
+.exchange{
 	margin-top: 1%;
 	background: white;
   width: 100%;
@@ -33,12 +29,12 @@
   cursor: pointer;
 }
 
-.aflacurs:hover,.aflacurs:active, .aflacurs:focus {
+.exchange:hover {
   background: #333;
 }
 
 .console2{
-	float: left;
+	float: right;
 	margin-left: 1%;
 	margin-right: 1%;
 	position:relative;
@@ -55,14 +51,3 @@
 	margin-top: 5%;
 }
 
-.console3{
-	float: right;
-	position:relative;
-	width:32%;
-	margin-top: 4%;
-	height:480px;
-	border-bottom: 8px solid black;
-	border-top: 8px solid black;
-    background-color: rgba(0,0,0,0.7);
-	text-align:center;
-}

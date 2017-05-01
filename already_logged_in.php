@@ -4,19 +4,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Homepage</title>
+	<title>Login</title>
 	<link rel="stylesheet" type="text/css" href="navbar.css" />
-	<link rel="stylesheet" type="text/css" href="home.css" />
+	<link rel="stylesheet" type="text/css" href="already_logged_in.css" />
 </head>
 <body>
 	<nav>
 		<ul class="navigation">
 			<?php	
 				if(isset($_SESSION["logged"])){
-					echo '<li><a class="active" href="choice.php">Home</a></li>';
+					echo '<li><a href="choice.php">Home</a></li>';
 				}
 				else{
-					echo '<li><a class="active" href="home.php">Home</a></li>';
+					echo '<li><a href="home.php">Home</a></li>';
 				}
 			?>  
 			<li><a href="contact.php">Contact</a></li>
@@ -30,6 +30,8 @@
 			?>  
 		</ul>
 	</nav>
-	<img src="speculapp.png" id="logo" >
+	<div class="already">
+		<p class="center">To access this page please logout first.</p>
+	</div>
 </body>
 </html>
