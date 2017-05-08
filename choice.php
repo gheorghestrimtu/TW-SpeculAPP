@@ -1,0 +1,133 @@
+
+<?php
+
+	session_start();
+	if(!isset($_SESSION["logged"])){
+		header("Location: login.php");
+	}
+	$wins=25;
+	$losses=23;
+	try{
+		how_many();
+	}catch(Exception $e){
+		header("Location: generic_error.php");
+	}
+	function how_many(){
+		global $wins,$losses;
+		$conn=oci_connect('speculapp','SPECULAPP','localhost/XE');
+		if (!$conn) {
+			$e = oci_error();
+			throw new Exception;
+		}
+		// Prepare the statement
+		$stid = oci_parse($conn, 'SELECT COUNT(*) FROM GAME WHERE USER_ID=:id AND OUTCOME=1');
+		if (!$stid) {
+			$e = oci_error($conn);
+			throw new Exception;
+		}
+		$id=$_SESSION["uid"];
+		oci_bind_by_name($stid,':id',$id);
+		// Perform the logic of the query
+		$r = oci_execute($stid);
+		if (!$r) {
+			$e = oci_error($stid);
+			throw new Exception;
+		}
+		// Fetch the results of the query
+		$row = oci_fetch_array($stid, OCI_NUM);
+		$wins=$row[0];
+		//free the statement
+		oci_free_statement($stid);
+		// Prepare the statement
+		$stid = oci_parse($conn, 'SELECT COUNT(*) FROM GAME WHERE USER_ID=:id AND OUTCOME=0');
+		if (!$stid) {
+			$e = oci_error($conn);
+			throw new Exception;
+		}
+		$id=$_SESSION["uid"];
+		oci_bind_by_name($stid,':id',$id);
+		// Perform the logic of the query
+		$r = oci_execute($stid);
+		if (!$r) {
+			$e = oci_error($stid);
+			throw new Exception;
+		}
+		// Fetch the results of the query
+		$row = oci_fetch_array($stid, OCI_NUM);
+		$losses=$row[0];
+	}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="navbar.css" />
+	<link rel="stylesheet" type="text/css" href="user.css" />
+			<script type="text/javascript">
+				var wins = "<?php echo $wins; ?>";
+				var losses= "<?php echo $losses; ?>";
+				window.onload=function () {
+					var chart = new CanvasJS.Chart("upperleft",
+					{
+						theme: "theme2",
+						title:{
+							text: "Games Won/Lost"
+						},
+						data: [
+						{
+							type: "pie",
+							//showInLegend: true,
+							toolTipContent: "{y} - #percent %",
+							yValueFormatString: "#0.#",
+							legendText: "{indexLabel}",
+							dataPoints: [
+								{ y: wins, indexLabel: "Wins" },
+								{ y: losses, indexLabel: "Losses" }
+							]
+						}
+						]
+					});
+					chart.render();
+				}
+			</script>
+	<script src="canvasjs.min.js"></script>
+</head>
+<body>
+	<nav>
+		<ul class="navigation">
+			<?php	
+				if(isset($_SESSION["logged"])){
+					echo '<li><a class="active" href="choice.php">Home</a></li>';
+				}
+				else{
+					echo '<li><a class="active" href="home.php">Home</a></li>';
+				}
+			?>  
+			<li><a href="contact.php">Contact</a></li>
+			<li><a href="about.php">About</a></li>
+			<li><a href="login.php">Login</a></li>
+			<li><a href="signup.php">Signup</a></li>
+			<?php	
+				if(isset($_SESSION["logged"])){
+					echo '<li style="float:right"><a href="logout.php">Logout</a></li>';
+				}
+			?>  
+		</ul>
+	</nav>
+
+<div class="menu1">
+	<div id="upperleft" class="upperleft">
+	</div>
+	<div class="upperright">
+		<p><?php echo $_SESSION["email"] ?></p>
+		<form action="game.php" method="get">
+			<button class="newgame" type="submit">new game</button>
+		</form>
+	</div>
+</div>
+<div style="display: none" class="menu2">
+<div class="lowleft"></div>
+<div class="lowright"></div>
+</div>
+</body>
+</html>
