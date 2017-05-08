@@ -18,16 +18,12 @@
 </ul>
 
 <section id="loginform">
-<div id="div1">
-<form id="myForm" action="dbt.php">
-  <label for="name">First Name</label><br>
-  <input type="text" id="name" name="name" ><br>
-  <label for="surname">Last Name</label><br>
-  <input type="password" id="surname" name="surname" ><br>
-  <input style="display:none" type="submit" value="Submit">
+<form id="myForm" method="post" action="dbt.php" onsubmit="return myFunction()">
+  <input type="text" id="name" name="name" placeholder="E-mail" ><br>
+  <input type="password" id="surname" name="surname" placeholder="Password" ><br>
+  <input  type="submit" id="sub" value="Submit" >
+  <p class="message">Not registered? <a href="signup.php">Create an account</a></p>
 </form> 
-<button id="login" onclick="myFunction()">Log in</button>
-</div>
 </section>
 
 <p id="demo"></p>
@@ -37,7 +33,9 @@ function myFunction() {
     var x = document.getElementById("myForm");
     if(x.elements[0].value!=""&&x.elements[1].value!="") {x.submit();}
     else{
-    document.getElementById("demo").innerHTML="All boxes must be filled";}
+    document.getElementById("demo").innerHTML="All boxes must be filled";
+	return false;
+	}
 }
 </script>
 

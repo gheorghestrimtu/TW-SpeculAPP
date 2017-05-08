@@ -16,7 +16,7 @@ session_start();
   <li><a href="signup.php">Signup</a></li>
 </ul>
 </nav>
-
+<section id="transactionform">
 <form action="expert.php">
 	<fieldset>
 	<legend>Currency 1</legend>
@@ -38,5 +38,6 @@ session_start();
 	</fieldset>
 	<input type="submit" value="Submit">
 </form>
+</section>
 </body>
 </head>

@@ -26,7 +26,11 @@ if (!$r) {
 
 oci_free_statement($stid);
 oci_close($conn);
+<<<<<<< HEAD
 header("Location: admin.php");
+=======
+header("Location: choice.php");
+>>>>>>> origin/master
 ?>
 
 

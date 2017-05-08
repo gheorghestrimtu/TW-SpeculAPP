@@ -5,19 +5,30 @@
 <html>
 <head>
 <title>Contact</title>
+<<<<<<< HEAD
 	<link rel="stylesheet" type="text/css" href="navbar.css" />
 	<link rel="stylesheet" type="text/css" href="contact.css" />
+=======
+
+	<link rel="stylesheet" type="text/css" href="navbar.css" />
+	<link rel="stylesheet" type="text/css" href="contact.css" />
+
+>>>>>>> origin/master
 </head>
 <body>
 	<nav>
 		<ul class="navigation">
 			<?php	
 				if(isset($_SESSION["logged"])){
+<<<<<<< HEAD
 					if($_SESSION["uid"]==1){
 						echo '<li><a href="admin.php">Home</a></li>';
 					}else{
 						echo '<li><a href="choice.php">Home</a></li>';
 					}
+=======
+					echo '<li><a href="choice.php">Home</a></li>';
+>>>>>>> origin/master
 				}
 				else{
 					echo '<li><a href="home.php">Home</a></li>';

@@ -7,6 +7,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 	<title>Signup</title>
 	<link rel="stylesheet" type="text/css" href="navbar.css" />
 	<link rel="stylesheet" type="text/css" href="signup.css" />

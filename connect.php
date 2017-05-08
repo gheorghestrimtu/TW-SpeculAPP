@@ -10,11 +10,15 @@
 		header("Location: error_while_connecting.php");
 	}
 	if($connected){
+<<<<<<< HEAD
 		if($_SESSION["uid"]==1){
 			header("Location: admin.php");
 		}else{
 			header("Location: choice.php");
 		}
+=======
+		header("Location: choice.php");
+>>>>>>> origin/master
 	}else{
 		header("Location: no_such_user.html");
 	}
