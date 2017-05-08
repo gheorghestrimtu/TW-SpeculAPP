@@ -9,6 +9,10 @@ ul.navigation {
 	right: 0;
     width: 100%;
 	position: fixed;
+<<<<<<< HEAD
+	z-index: 1;
+=======
+>>>>>>> origin/master
 }
 
 ul.navigation li {

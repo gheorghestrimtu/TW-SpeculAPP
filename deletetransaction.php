@@ -1,8 +1,7 @@
 <?php	
 	session_start();
 	
-	$sessionid=$_REQUEST["delete"];
-	echo($sessionid);
+	$transactionid=$_REQUEST["delete"];
 	$conn = oci_connect('speculapp', 'SPECULAPP', 'localhost/XE');
 if (!$conn) {
     $e = oci_error();
@@ -10,8 +9,8 @@ if (!$conn) {
 }
 
 // Prepare the statement
-$stid = oci_parse($conn, 'DELETE FROM SESION WHERE SESION_ID=:mysesionid');
-oci_bind_by_name($stid,':mysesionid',$sessionid);
+$stid = oci_parse($conn, 'DELETE FROM TRANSACTION WHERE TRANSACTION_ID=:transactionid');
+oci_bind_by_name($stid,':transactionid',$transactionid);
 if (!$stid) {
     $e = oci_error($conn);
     trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
@@ -26,11 +25,7 @@ if (!$r) {
 
 oci_free_statement($stid);
 oci_close($conn);
-<<<<<<< HEAD
 header("Location: admin.php");
-=======
-header("Location: choice.php");
->>>>>>> origin/master
 ?>
 
 
