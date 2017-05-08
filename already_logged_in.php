@@ -13,15 +13,11 @@
 		<ul class="navigation">
 			<?php	
 				if(isset($_SESSION["logged"])){
-<<<<<<< HEAD
 					if($_SESSION["uid"]==1){
 						echo '<li><a href="admin.php">Home</a></li>';
 					}else{
 						echo '<li><a href="choice.php">Home</a></li>';
 					}
-=======
-					echo '<li><a href="choice.php">Home</a></li>';
->>>>>>> origin/master
 				}
 				else{
 					echo '<li><a href="home.php">Home</a></li>';

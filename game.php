@@ -3,10 +3,7 @@
 	if(!isset($_SESSION["logged"])){
 		header("Location: login.php");
 	}
-<<<<<<< HEAD
 	
-=======
->>>>>>> origin/master
 ?>
 
 <!DOCTYPE html>
