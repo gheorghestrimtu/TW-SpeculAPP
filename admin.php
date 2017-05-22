@@ -4,9 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Contact</title>
+	<title>Admin</title>
 	<link rel="stylesheet" type="text/css" href="navbar.css" />
-	<link rel="stylesheet" type="text/css" href="contact.css" />
+	<link rel="stylesheet" type="text/css" href="admin.css" />
 </head>
 <body>
 	<nav>
@@ -20,10 +20,12 @@
 					}
 				}
 				else{
+					
 					echo '<li><a href="home.php">Home</a></li>';
+					
 				}
 			?>  
-			<li><a class="active" href="contact.php">Contact</a></li>
+			<li><a href="contact.php">Contact</a></li>
 			<li><a href="about.php">About</a></li>
 			<li><a href="login.php">Login</a></li>
 			<li><a href="signup.php">Signup</a></li>
@@ -34,14 +36,17 @@
 			?>  
 		</ul>
 	</nav>
-
-<section id="names">
-<p id="creator"> Game Creators</p>
-<p> Gheorghe Strîmtu <a target="_blank" href="https://www.facebook.com/Uimitorul"> <img id="fb" src="fb.png" ></a></p>
-<p> Iaroslav Mazur <a target="_blank" href="https://www.facebook.com/Mazur.Iaroslav" > <img id="fb" src="fb.png" > </a></p>
-</section>
-
-
-
+	<div class="menu1">
+		<div class="upperleft">
+		<form action="delete_stuff.php">
+				<input type="submit" value="Delete Stuff" id="del">
+		</form>
+		</div>
+		<div class="upperright">
+		<form action="change_stuff.php">
+				<input type="submit" value="Change Stuff" id="cha">
+		</form>
+		</div>
+	</div>
 </body>
 </html>

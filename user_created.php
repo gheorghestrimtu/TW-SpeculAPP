@@ -4,19 +4,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Homepage</title>
+	<title>Created</title>
 	<link rel="stylesheet" type="text/css" href="navbar.css" />
-	<link rel="stylesheet" type="text/css" href="home.css" />
+	<link rel="stylesheet" type="text/css" href="user_created.css" />
 </head>
 <body>
 	<nav>
 		<ul class="navigation">
 			<?php	
 				if(isset($_SESSION["logged"])){
-					echo '<li><a class="active" href="choice.php">Home</a></li>';
+					if($_SESSION["uid"]==1){
+						echo '<li><a href="admin.php">Home</a></li>';
+					}else{
+						echo '<li><a href="choice.php">Home</a></li>';
+					}
 				}
 				else{
-					echo '<li><a class="active" href="home.php">Home</a></li>';
+					echo '<li><a href="home.php">Home</a></li>';
 				}
 			?>  
 			<li><a href="contact.php">Contact</a></li>
@@ -30,6 +34,8 @@
 			?>  
 		</ul>
 	</nav>
-	<img src="speculapp.png" id="logo" >
+	<div class="already">
+		<p class="center">User successfully created.</p>
+	</div>
 </body>
 </html>
