@@ -7,6 +7,7 @@
 	<title>Admin</title>
 	<link rel="stylesheet" type="text/css" href="navbar.css" />
 	<link rel="stylesheet" type="text/css" href="admin.css" />
+
 </head>
 <body>
 	<nav>
@@ -37,6 +38,7 @@
 		</ul>
 	</nav>
 	<div class="menu1">
+
 		<div class="upperleft">
 		<form action="delete_stuff.php">
 				<input type="submit" value="Delete Stuff" id="del">
@@ -47,6 +49,6 @@
 				<input type="submit" value="Change Stuff" id="cha">
 		</form>
 		</div>
-	</div>
+	</div>	
 </body>
 </html>

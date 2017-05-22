@@ -10,8 +10,12 @@
 	float: left;
 	width:49%;
 	height:480px;
+<<<<<<< HEAD
 	border-bottom: 8px solid black;
 	border-top: 8px solid black;
+=======
+	border-bottom: 8px solid black;	border-top: 8px solid black;
+>>>>>>> origin/master
     background-color: rgba(0,0,0,0.7);
 	text-align:center;
 }

@@ -3,6 +3,7 @@
 	if(!isset($_SESSION["logged"])){
 		header("Location: login.php");
 	}
+
 	//create new game with unknown outcome
 	try{
 		$conn=oci_connect('speculapp','SPECULAPP','localhost/XE');
@@ -109,6 +110,7 @@
 	function end_game($outcome,$total_sum,$eur,$usd,$ron){
 		
 	}
+
 ?>
 
 <!DOCTYPE html>
@@ -192,6 +194,7 @@
 
 
 		var updateInterval = 10000;
+
 		var eur_avg_rate=parseFloat(document.getElementById("eurorate").innerHTML);//<?php echo $eur_rate; ?>;
 		var usd_avg_rate=parseFloat(document.getElementById("dollarrate").innerHTML);//<?php echo $usd_rate; ?>;
 		var win_sum=parseFloat(document.getElementById("winsum").innerHTML);//<?php echo $win; ?>;
@@ -199,6 +202,7 @@
 		// initial value
 		var yValue1 = eur_avg_rate; 
 		var yValue2 = usd_avg_rate;
+
 		var yValue3 = 5.3604;
 		
 		var time = new Date();
@@ -218,6 +222,7 @@
 				// add interval duration to time				
 				time.setTime(time.getTime()+ updateInterval);
  
+
 				yValue1 = (Math.random() * ((eur_avg_rate+1.1111) - (eur_avg_rate-1.1111)) + (eur_avg_rate-1.1111));
 				yValue2 = (Math.random() * ((usd_avg_rate+1.1111) - (usd_avg_rate-1.1111)) + (usd_avg_rate-1.1111));
 				yValue3 = (Math.random() * (6.4321 - 4.9123) + 4.9123);
@@ -234,6 +239,7 @@
 				}
 				if(totalvalue>=win_sum){
 					write_game_end(1);
+
 				}
 				// pushing the new values
 				dataPoints1.push({
@@ -301,6 +307,7 @@
 		//(parseInt(document.getElementsByName('currency1sum')[0].value)*values[currency1])/values[currency2];
 		//values[currency1]*parseInt(document.getElementById(currency1).innerHTML);
 		//document.getElementById("clicked").innerHTML=currency1+" "+currency2+" "+document.getElementsByName('currency1sum')[0].value;
+
 		write_transaction(currency1,currency2,sum_to_convert);
 		return false;
 	}
@@ -333,6 +340,7 @@
 			window.location="loss.php";
 		}
 	}
+
 	</script>
 	<script type="text/javascript" src="canvasjs.min.js"></script>
 </head>
@@ -379,7 +387,9 @@
 
 	</div>
 	<div name="console2" class="console2">
+
 		<p>win sum: <?php echo htmlspecialchars($win); ?> lose sum: <?php echo htmlspecialchars($lose); ?> </p>
+
 		<form class="ex" name="ex"  onsubmit="return calculate()">
 		<fieldset>
 			<legend>From</legend>
