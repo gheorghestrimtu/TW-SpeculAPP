@@ -35,7 +35,7 @@
 		</ul>
 	</nav>
 	<div class="already">
-		<p class="center">To access this page please logout first.</p>
+		<p class="center">You won this game. Congratulations!</p>
 	</div>
 </body>
 </html>

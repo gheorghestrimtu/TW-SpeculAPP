@@ -4,9 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login</title>
+	<title>Created</title>
 	<link rel="stylesheet" type="text/css" href="navbar.css" />
-	<link rel="stylesheet" type="text/css" href="already_logged_in.css" />
+	<link rel="stylesheet" type="text/css" href="user_created.css" />
 </head>
 <body>
 	<nav>
@@ -35,7 +35,7 @@
 		</ul>
 	</nav>
 	<div class="already">
-		<p class="center">To access this page please logout first.</p>
+		<p class="center">User successfully created.</p>
 	</div>
 </body>
 </html>

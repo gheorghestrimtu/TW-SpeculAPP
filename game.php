@@ -3,10 +3,114 @@
 	if(!isset($_SESSION["logged"])){
 		header("Location: login.php");
 	}
-<<<<<<< HEAD
-	
-=======
->>>>>>> origin/master
+
+	//create new game with unknown outcome
+	try{
+		$conn=oci_connect('speculapp','SPECULAPP','localhost/XE');
+		if (!$conn) {
+			$e = oci_error();
+			throw new Exception;
+		}
+		// Prepare the statement
+		$stid = oci_parse($conn, 'SELECT MAX(GAME_ID) FROM GAME');
+		if (!$stid) {
+			$e = oci_error($conn);
+			throw new Exception;
+		}
+		// Perform the logic of the query
+		$r = oci_execute($stid);
+		if (!$r) {
+			$e = oci_error($stid);
+			throw new Exception;
+		}	
+		$row=oci_fetch_array($stid, OCI_NUM);
+		$oldgameid=$row[0];
+		$gameid=$oldgameid+1;
+		oci_free_statement($stid);
+		// Prepare the statement
+		$stid=oci_parse($conn,'INSERT INTO GAME VALUES(:gameid,:sesionid,:userid,2,0,0,0,0)');
+		if (!$stid) {
+			$e = oci_error($conn);
+			throw new Exception;
+		}
+		oci_bind_by_name($stid,":gameid",$gameid);
+		oci_bind_by_name($stid,":sesionid",$_SESSION["sesion"]);
+		oci_bind_by_name($stid,":userid",$_SESSION["uid"]);
+		$r = oci_execute($stid);
+		if (!$r) {
+			$e = oci_error($stid);
+			throw new Exception;
+		}
+		oci_free_statement($stid);
+		oci_close($conn);
+	}catch(Exception $e){
+		session_unset();
+		header("Location: error_while_connecting.php");
+	}
+	//get average exchange rates
+	try{
+		$conn=oci_connect('speculapp','SPECULAPP','localhost/XE');
+		if (!$conn) {
+			$e = oci_error();
+			throw new Exception;
+		}
+		// Prepare the statement
+		$stid = oci_parse($conn, 'SELECT EXCHANGE_RATE FROM CURRENCY');
+		if (!$stid) {
+			$e = oci_error($conn);
+			throw new Exception;
+		}
+		// Perform the logic of the query
+		$r = oci_execute($stid);
+		if (!$r) {
+			$e = oci_error($stid);
+			throw new Exception;
+		}
+		// Fetch the results of the query
+		$row = oci_fetch_array($stid, OCI_NUM);
+		$row = oci_fetch_array($stid, OCI_NUM);
+		$usd_rate=$row[0];
+		$row = oci_fetch_array($stid, OCI_NUM);
+		$eur_rate=$row[0];
+		oci_free_statement($stid);
+		oci_close($conn);
+	}catch(Exception $e){
+		session_unset();
+		header("Location: error_while_connecting.php");
+	}
+	//get win and loss sums
+	try{
+		$conn=oci_connect('speculapp','SPECULAPP','localhost/XE');
+		if (!$conn) {
+			$e = oci_error();
+			throw new Exception;
+		}
+		// Prepare the statement
+		$stid = oci_parse($conn, 'SELECT WIN_SUM, LOSE_SUM FROM SETTINGS');
+		if (!$stid) {
+			$e = oci_error($conn);
+			throw new Exception;
+		}
+		// Perform the logic of the query
+		$r = oci_execute($stid);
+		if (!$r) {
+			$e = oci_error($stid);
+			throw new Exception;
+		}
+		$row=oci_fetch_array($stid,OCI_NUM);
+		$win=$row[0];
+		$lose=$row[1];
+		oci_free_statement($stid);
+		oci_close($conn);
+	}catch(Exception $e){
+		session_unset();
+		header("Location: error_while_connecting.php");
+	}
+	//end of game function, useless
+	function end_game($outcome,$total_sum,$eur,$usd,$ron){
+		
+	}
+
 ?>
 
 <!DOCTYPE html>
@@ -90,9 +194,15 @@
 
 
 		var updateInterval = 10000;
+
+		var eur_avg_rate=parseFloat(document.getElementById("eurorate").innerHTML);//<?php echo $eur_rate; ?>;
+		var usd_avg_rate=parseFloat(document.getElementById("dollarrate").innerHTML);//<?php echo $usd_rate; ?>;
+		var win_sum=parseFloat(document.getElementById("winsum").innerHTML);//<?php echo $win; ?>;
+		var lose_sum=parseFloat(document.getElementById("losesum").innerHTML);//<?php echo $lose; ?>;
 		// initial value
-		var yValue1 = 4.5333; 
-		var yValue2 = 4.1453;
+		var yValue1 = eur_avg_rate; 
+		var yValue2 = usd_avg_rate;
+
 		var yValue3 = 5.3604;
 		
 		var time = new Date();
@@ -112,20 +222,24 @@
 				// add interval duration to time				
 				time.setTime(time.getTime()+ updateInterval);
  
-				yValue1 = (Math.random() * (5.2345 - 4.1234) + 4.1234);
-				yValue2 = (Math.random() * (4.3456 - 3.6789) + 3.6789);
+
+				yValue1 = (Math.random() * ((eur_avg_rate+1.1111) - (eur_avg_rate-1.1111)) + (eur_avg_rate-1.1111));
+				yValue2 = (Math.random() * ((usd_avg_rate+1.1111) - (usd_avg_rate-1.1111)) + (usd_avg_rate-1.1111));
 				yValue3 = (Math.random() * (6.4321 - 4.9123) + 4.9123);
 				values["USD"]=yValue2;
 				values["EUR"]=yValue1;
-				totalvalue=parseInt(document.getElementById("USD").innerHTML)*values["USD"]
-				+parseInt(document.getElementById("EUR").innerHTML)*values["EUR"]+parseInt(document.getElementById("RON").innerHTML);
+				totalvalue=parseFloat(document.getElementById("USD").innerHTML)*values["USD"]
+				+parseFloat(document.getElementById("EUR").innerHTML)*values["EUR"]+parseFloat(document.getElementById("RON").innerHTML);
 				document.getElementById("total").innerHTML=totalvalue.toFixed(4);		
 				//if totalvalue is=> to 2000 then the player won the game, if totalvalue is <100 then the player lost the game
-				if(totalvalue<100){
-					//loss
+				if(totalvalue<lose_sum){
+					//game
+					write_game_end(0);
+					
 				}
-				if(totalvalue>=2000){
-					//win
+				if(totalvalue>=win_sum){
+					write_game_end(1);
+
 				}
 				// pushing the new values
 				dataPoints1.push({
@@ -193,12 +307,60 @@
 		//(parseInt(document.getElementsByName('currency1sum')[0].value)*values[currency1])/values[currency2];
 		//values[currency1]*parseInt(document.getElementById(currency1).innerHTML);
 		//document.getElementById("clicked").innerHTML=currency1+" "+currency2+" "+document.getElementsByName('currency1sum')[0].value;
+
+		write_transaction(currency1,currency2,sum_to_convert);
 		return false;
 	}
+	function write_transaction(currency1,currency2,sum_to_convert){
+		var gameid=parseFloat(document.getElementById("gameid").innerHTML);
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				var useless=this.responseText;
+			}
+		};
+		xhttp.open("GET", "insert_transaction.php?gameid="+gameid+"&curr1="+currency1+"&curr2="+currency2+"&sum="+sum_to_convert, true);
+		xhttp.send();
+	}
+	
+	function write_game_end(outcome){
+		var gameid=parseFloat(document.getElementById("gameid").innerHTML);
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				var useless=this.responseText;
+			}
+		};
+		xhttp.open("GET", "game_end.php?gameid="+gameid+"&outcome="+outcome, true);
+		xhttp.send();
+		if(outcome===1){
+			window.location="win.php";
+		}
+		else{
+			window.location="loss.php";
+		}
+	}
+
 	</script>
 	<script type="text/javascript" src="canvasjs.min.js"></script>
 </head>
 <body>
+	<div id="eurorate" style="display:none;">
+		<?php echo htmlspecialchars($eur_rate); ?>
+	</div>
+	<div id="dollarrate" style="display:none;">
+		<?php echo htmlspecialchars($usd_rate); ?>
+	</div>
+	<div id="winsum" style="display:none;">
+		<?php echo htmlspecialchars($win); ?>
+	</div>
+	<div id="losesum" style="display:none;">
+		<?php echo htmlspecialchars($lose); ?>
+	</div>
+	<div id="gameid" style="display:none;">
+		<?php echo htmlspecialchars($gameid); ?>
+	</div>
+	
 	<nav>
 		<ul class="navigation">
 			<?php	
@@ -225,6 +387,9 @@
 
 	</div>
 	<div name="console2" class="console2">
+
+		<p>win sum: <?php echo htmlspecialchars($win); ?> lose sum: <?php echo htmlspecialchars($lose); ?> </p>
+
 		<form class="ex" name="ex"  onsubmit="return calculate()">
 		<fieldset>
 			<legend>From</legend>
