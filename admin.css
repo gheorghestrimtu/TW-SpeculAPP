@@ -23,64 +23,24 @@
     background-color: rgba(0,0,0,0.7);
 	text-align: center;
 }
-
-.menu2{
- position: relative ;
- top: 50px;
-  width: 100%;
-	text-transform: uppercase;
-}
-.lowleft{
-	float: left;
-	width:49%;
-	height:480px;
-	border-bottom: 8px solid black;
-	border-top: 8px solid black;
-    background-color: rgba(0,0,0,0.7);
-	text-align:center;
-}
-.lowright{
-	float: right;
-	width:49%;
-	height: 480px;
-	border-bottom: 8px solid black;
-	border-top: 8px solid black;
-    background-color: rgba(0,0,0,0.7);
-	text-align: center;
-}
-#deletesessionbutton{
-color:white;
-}
-
-#deletesessionbutton #delete {
-  font-family: "Roboto", sans-serif;
-  width: 20%;
-  margin-bottom:3px;
-  box-sizing: border-box;
-  font-size: 14px;
-}
-#deletesessionbutton #sub {
+#del,#cha {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: white;
+  background: black;
   width: 100%;
+  height:480px;
   border: 0;
   padding: 15px;
-  color: black;
-  font-size: 14px;
+  color: white;
+  font-size: 55px;
   cursor: pointer;
 }
-#deletesessionbutton #sub:hover,#myForm #sub:active,#myForm #sub:focus {
-  background: black;
-  color:white;
+#del:hover,#myForm #sub:active,#myForm #sub:focus {
+  background: white;
+  color:black;
 }
-#sessiontable{
-	margin-left:3%;
-	margin-right:3%;
-}
-
-.pager{
-	margin-left:3%;
-	margin-top: 8px;
+#cha:hover,#myForm #sub:active,#myForm #sub:focus {
+  background: white;
+  color:black;
 }

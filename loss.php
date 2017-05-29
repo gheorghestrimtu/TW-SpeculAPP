@@ -4,9 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Admin</title>
+	<title>Login</title>
 	<link rel="stylesheet" type="text/css" href="navbar.css" />
-	<link rel="stylesheet" type="text/css" href="admin.css" />
+	<link rel="stylesheet" type="text/css" href="already_logged_in.css" />
 </head>
 <body>
 	<nav>
@@ -20,9 +20,7 @@
 					}
 				}
 				else{
-					
 					echo '<li><a href="home.php">Home</a></li>';
-					
 				}
 			?>  
 			<li><a href="contact.php">Contact</a></li>
@@ -36,17 +34,8 @@
 			?>  
 		</ul>
 	</nav>
-	<div class="menu1">
-		<div class="upperleft">
-		<form action="delete_stuff.php">
-				<input type="submit" value="Delete Stuff" id="del">
-		</form>
-		</div>
-		<div class="upperright">
-		<form action="change_stuff.php">
-				<input type="submit" value="Change Stuff" id="cha">
-		</form>
-		</div>
+	<div class="already">
+		<p class="center">You lost. Try again.</p>
 	</div>
 </body>
 </html>
