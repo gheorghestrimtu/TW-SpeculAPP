@@ -34,7 +34,9 @@
 		</ul>
 	</nav>
 	<section id="signupform" >
+
 		<form id="myForm2" action="createuser.php" onsubmit="return myFunction()">
+
 			<input type="text" id="firstname" name="firstname" placeholder="First Name"> <br>
 			<input type="text" id="lastname" name="lastname" placeholder="Last Name"> <br>
 			<input type="text" id="email" name="email" placeholder="E-mail" ><br>
@@ -49,9 +51,11 @@
 			var x = document.getElementById("myForm2");
 			if(x.elements[0].value!=""&&x.elements[1].value!=""&&x.elements[2]!=""&&x.elements[3]!="") {return true;}
 			else{
+
 				document.getElementById("demo").innerHTML="All boxes must be filled";
 				return false;
 			}
+
 		}
 	</script>
 </body>

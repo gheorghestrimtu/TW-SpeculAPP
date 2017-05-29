@@ -1,23 +1,27 @@
 <?php
 	session_start();
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
 <title>About</title>
 	<link rel="stylesheet" type="text/css" href="navbar.css" />	
 	<link rel="stylesheet" type="text/css" href="about.css" />
+
 </head>
 <body>
 	<nav>
 		<ul class="navigation">
 			<?php	
+
 				if(isset($_SESSION["logged"])){
 					if($_SESSION["uid"]==1){
 						echo '<li><a href="admin.php">Home</a></li>';
 					}else{
 						echo '<li><a href="choice.php">Home</a></li>';
 					}
+
 				}
 				else{
 					echo '<li><a href="home.php">Home</a></li>';
@@ -41,6 +45,7 @@
 Administratorul stabileste valutele (EUR, USD, GBP, etc.), 
 marjele de randomizare a cursului, durata de valabilitate a cursului (in secunde), suma de inceput (in RON), pragul de castig (e.g., peste 2000 RON) 
 si pragul de pierdere (de pilda, sub 100 RON). <br> <br> <br>
+
 
 Jucatorul are la dispozitie doua seturi de comenzi: <br> <br>
 <small>- <i><u><b>Afla curs pentru valuta V</b></u></i> (daca cursul generat anterior este mai vechi decat durata de valabilitate setata, 

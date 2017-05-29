@@ -7,6 +7,7 @@
 <title>Contact</title>
 	<link rel="stylesheet" type="text/css" href="navbar.css" />
 	<link rel="stylesheet" type="text/css" href="contact.css" />
+
 </head>
 <body>
 	<nav>
