@@ -43,12 +43,14 @@
 		<form action="delete_stuff.php">
 				<input type="submit" value="Delete Stuff" id="del">
 		</form>
+
 		</div>
 		<div class="upperright">
 		<form action="change_stuff.php">
 				<input type="submit" value="Change Stuff" id="cha">
 		</form>
 		</div>
-	</div>	
+	</div>
+
 </body>
 </html>

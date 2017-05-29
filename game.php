@@ -221,7 +221,6 @@
 				
 				// add interval duration to time				
 				time.setTime(time.getTime()+ updateInterval);
- 
 
 				yValue1 = (Math.random() * ((eur_avg_rate+1.1111) - (eur_avg_rate-1.1111)) + (eur_avg_rate-1.1111));
 				yValue2 = (Math.random() * ((usd_avg_rate+1.1111) - (usd_avg_rate-1.1111)) + (usd_avg_rate-1.1111));
@@ -333,7 +332,9 @@
 		};
 		xhttp.open("GET", "game_end.php?gameid="+gameid+"&outcome="+outcome, true);
 		xhttp.send();
-		if(outcome===1){
+
+		if(outcome==1){
+
 			window.location="win.php";
 		}
 		else{
