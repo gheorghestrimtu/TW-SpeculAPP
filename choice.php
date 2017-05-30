@@ -120,7 +120,7 @@
 	</div>
 	
 	<div id="center">
-		<p style="font-weight: bold; font-size:34px;"> Best three players: </p>
+		<p style="font-weight: bold; font-size:34px;"> Best players ever: </p>
 		<?php
 			try{
 				$conn=oci_connect('speculapp','SPECULAPP','localhost/XE');
@@ -142,7 +142,7 @@
 					throw new Exception;
 				}
 				echo '<table id="best">';
-				echo '<tr><th>Name</th><th>Win Ratio</th></tr>';
+				echo '<tr><th><i><u>Name</u></i></th><th><i><u>Win Ratio</u></i></th></tr>';
 				while($row=oci_fetch_array($stid,OCI_NUM)){
 					$userid=$row[0];
 					$ratio=$row[1];
@@ -164,21 +164,23 @@
 		?>
 		<div id="buttonlist">
 		<a href="#html" download>
-			<button type="button">Download HTML</button>
+			<button type="button">Download as HTML</button>
 		</a>
 		<a href="#json" download>
-			<button type="button">Download JSON</button>
+			<button type="button">Download as JSON</button>
 		</a>
 		<a href="#pdf" download>
-			<button type="button">Download PDF</button>
+			<button type="button">Download as PDF</button>
 		</a>
 		</div>
 	</div>
 	
 	<div id="upperright">
-		<p><?php echo $_SESSION["email"] ?></p>
+		<p style="padding-top: 20px;"><?php echo ("Welcome back, "."<b>".$_SESSION["email"]."</b>"."!") ?></p>
+		<p><?php echo ("<i>"."Isn't it a great day for a profitable day-trading?"."</i>") ?></p>
+		
 		<form action="game.php" method="get">
-			<button class="newgame" type="submit">new game</button>
+			<button class="newgame" type="submit">Start a New Game</button>
 		</form>
 	</div>
 	

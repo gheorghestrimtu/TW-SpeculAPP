@@ -35,7 +35,7 @@
 		</ul>
 	</nav>
 	<div class="already">
-		<p class="center">You lost. Try again.</p>
+		<p class="center">Unfortunately, you've lost this game. :( <br><br> Play another one - and, maybe, the odds will be in your favour this time!</p>
 	</div>
 </body>
 </html>

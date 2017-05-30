@@ -35,7 +35,7 @@
 		</ul>
 	</nav>
 	<div class="already">
-		<p class="center">User successfully created.</p>
+		<p class="center">The new user has been successfully created!</p>
 	</div>
 </body>
 </html>

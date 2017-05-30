@@ -18,6 +18,8 @@
 }*/
 main {
   padding-top: 30px;
+  position: relative;
+  top: 40px;
   width:100%;
 }
 
@@ -55,6 +57,8 @@ main {
 	margin: 20px;
 	border-bottom: 8px solid black;
 	border-top: 8px solid black;
+	font-size: 22px;
+	text-align: center;
 	
     background-color: rgba(0,0,0,0.7);
 	color: white;
@@ -119,13 +123,13 @@ main {
 
 
 #best{
-	margin-top:80px;
+	margin-top:60px;
 	width:100%;
 }
 
 
 #buttonlist{
-	margin-top:120px;
+	margin-top:110px;
 	width:100%;
 	list-style-type: none;
 }
