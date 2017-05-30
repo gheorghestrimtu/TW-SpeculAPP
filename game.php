@@ -194,13 +194,9 @@
 
 
 
-<<<<<<< HEAD
-		var updateInterval = parseInt(document.getElementById("interval").innerHTML);
-=======
 
 		var updateInterval = parseInt(document.getElementById("interval").innerHTML);
 
->>>>>>> origin/Testing
 		var eur_avg_rate=parseFloat(document.getElementById("eurorate").innerHTML);//<?php echo $eur_rate; ?>;
 		var usd_avg_rate=parseFloat(document.getElementById("dollarrate").innerHTML);//<?php echo $usd_rate; ?>;
 		var win_sum=parseFloat(document.getElementById("winsum").innerHTML);//<?php echo $win; ?>;
