@@ -2,6 +2,10 @@
 	session_start();
 ?>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/Testing
 <!DOCTYPE html>
 <html>
 <head>

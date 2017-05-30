@@ -50,7 +50,14 @@
 				<input type="submit" value="Change Stuff" id="cha">
 		</form>
 		</div>
+<<<<<<< HEAD
 	</div>
 
+=======
+
+	</div>
+
+
+>>>>>>> origin/Testing
 </body>
 </html>
