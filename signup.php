@@ -53,6 +53,7 @@
 			else{
 
 				document.getElementById("demo").innerHTML="All boxes must be filled!";
+
 				return false;
 			}
 
