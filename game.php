@@ -44,7 +44,7 @@
 		oci_close($conn);
 	}catch(Exception $e){
 		session_unset();
-		header("Location: error_while_connecting.php");
+		header("Location: error_while_connecting.html");
 	}
 	//get average exchange rates
 	try{
@@ -75,7 +75,7 @@
 		oci_close($conn);
 	}catch(Exception $e){
 		session_unset();
-		header("Location: error_while_connecting.php");
+		header("Location: error_while_connecting.html");
 	}
 	//get win and loss sums and time interval and start sum
 	try{
@@ -105,7 +105,7 @@
 		oci_close($conn);
 	}catch(Exception $e){
 		session_unset();
-		header("Location: error_while_connecting.php");
+		header("Location: error_while_connecting.html");
 	}
 	
 	//end of game function, useless
@@ -194,9 +194,7 @@
 
 
 
-
 		var updateInterval = parseInt(document.getElementById("interval").innerHTML);
-
 		var eur_avg_rate=parseFloat(document.getElementById("eurorate").innerHTML);//<?php echo $eur_rate; ?>;
 		var usd_avg_rate=parseFloat(document.getElementById("dollarrate").innerHTML);//<?php echo $usd_rate; ?>;
 		var win_sum=parseFloat(document.getElementById("winsum").innerHTML);//<?php echo $win; ?>;

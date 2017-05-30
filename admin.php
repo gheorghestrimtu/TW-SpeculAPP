@@ -50,9 +50,7 @@
 				<input type="submit" value="Change Stuff" id="cha">
 		</form>
 		</div>
-
 	</div>
-
 
 </body>
 </html>
