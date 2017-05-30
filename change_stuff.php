@@ -7,7 +7,7 @@
 			throw new Exception;
 		}
 		// Prepare the statement
-		$stid = oci_parse($conn, 'SELECT WIN_SUM,LOSE_SUM FROM SETTINGS');
+		$stid = oci_parse($conn, 'SELECT WIN_SUM,LOSE_SUM,INTERVAL,START_SUM FROM SETTINGS');
 		if (!$stid) {
 			$e = oci_error($conn);
 			throw new Exception;
@@ -21,6 +21,8 @@
 		$row = oci_fetch_array($stid, OCI_NUM);
 		$winsum=$row[0];
 		$losesum=$row[1];
+		$interval=$row[2];
+		$start_sum=$row[3];
 		oci_free_statement($stid);
 		$stid = oci_parse($conn, "SELECT EXCHANGE_RATE FROM CURRENCY WHERE TRIGRAMM='USD'");
 		if (!$stid) {
@@ -101,13 +103,23 @@
 				<input type="text" id="delete" name="delete" ><br>
 				<input type="submit" value="Change lose sum" id="sub">
 		</form>
-		<p>dollar exchange rate: <?php echo htmlspecialchars($usdrate); ?></p>
+		<p>current start sum: <?php echo htmlspecialchars($start_sum); ?></p>
+		<form action="changestartsum.php">
+				<input type="text" id="delete" name="delete" ><br>
+				<input type="submit" value="Change start sum" id="sub">
+		</form>
+		<p>current interval: <?php echo htmlspecialchars($interval); ?> ms</p>
+		<form action="changeinterval.php">
+				<input type="text" id="delete" name="delete" ><br>
+				<input type="submit" value="Change interval" id="sub">
+		</form>
+		<p>current medium USD price: <?php echo htmlspecialchars($usdrate); ?></p>
 		<form action="changeusdrate.php">
 				<input type="text" id="delete" name="delete" ><br>
 				<input type="submit" value="Change dollar rate" id="sub">
 		</form>
-		<p>euro exchange rate: <?php echo htmlspecialchars($eurrate); ?></p>
-		<form action="changeeurrate.php">
+		<p>current medium Euro price: <?php echo htmlspecialchars($eurrate); ?></p>
+		<form action="changeeurrate.php" style="padding-bottom:5px;">
 				<input type="text" id="delete" name="delete" ><br>
 				<input type="submit" value="Change euro rate" id="sub">
 		</form>

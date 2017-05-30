@@ -77,7 +77,7 @@
 		session_unset();
 		header("Location: error_while_connecting.php");
 	}
-	//get win and loss sums
+	//get win and loss sums and time interval and start sum
 	try{
 		$conn=oci_connect('speculapp','SPECULAPP','localhost/XE');
 		if (!$conn) {
@@ -85,7 +85,7 @@
 			throw new Exception;
 		}
 		// Prepare the statement
-		$stid = oci_parse($conn, 'SELECT WIN_SUM, LOSE_SUM FROM SETTINGS');
+		$stid = oci_parse($conn, 'SELECT WIN_SUM, LOSE_SUM, INTERVAL, START_SUM FROM SETTINGS');
 		if (!$stid) {
 			$e = oci_error($conn);
 			throw new Exception;
@@ -99,12 +99,15 @@
 		$row=oci_fetch_array($stid,OCI_NUM);
 		$win=$row[0];
 		$lose=$row[1];
+		$interval=$row[2];
+		$start_sum=$row[3];
 		oci_free_statement($stid);
 		oci_close($conn);
 	}catch(Exception $e){
 		session_unset();
 		header("Location: error_while_connecting.php");
 	}
+	
 	//end of game function, useless
 	function end_game($outcome,$total_sum,$eur,$usd,$ron){
 		
@@ -145,10 +148,10 @@
 				fontColor: "dimGrey"
 			},
 			axisX: {
-				title: "chart updates every 10 secs"
+				title: "chart updates every "+(parseInt(document.getElementById("interval").innerHTML)/1000)+" secs"
 			},
 			axisY:{
-				prefix: 'RON',
+				prefix: 'RON ',
 				includeZero: false
 			}, 
 			data: [{ 
@@ -191,7 +194,7 @@
 
 
 
-		var updateInterval = 10000;
+		var updateInterval = parseInt(document.getElementById("interval").innerHTML);
 		var eur_avg_rate=parseFloat(document.getElementById("eurorate").innerHTML);//<?php echo $eur_rate; ?>;
 		var usd_avg_rate=parseFloat(document.getElementById("dollarrate").innerHTML);//<?php echo $usd_rate; ?>;
 		var win_sum=parseFloat(document.getElementById("winsum").innerHTML);//<?php echo $win; ?>;
@@ -326,7 +329,7 @@
 		};
 		xhttp.open("GET", "game_end.php?gameid="+gameid+"&outcome="+outcome, true);
 		xhttp.send();
-		if(outcome===1){
+		if(outcome==1){
 			window.location="win.php";
 		}
 		else{
@@ -351,6 +354,12 @@
 	</div>
 	<div id="gameid" style="display:none;">
 		<?php echo htmlspecialchars($gameid); ?>
+	</div>
+	<div id="startsum" style="display:none;">
+		<?php echo htmlspecialchars($start_sum); ?>
+	</div>
+	<div id="interval" style="display:none;">
+		<?php echo htmlspecialchars($interval); ?>
 	</div>
 	
 	<nav>
@@ -403,7 +412,7 @@
 		</form>
 		<table border=1 style="margin-top:5px;width:100%;">
 		<tr>
-			<td>RON</td><td id="RON">200</td>
+			<td>RON</td><td id="RON"><?php echo htmlspecialchars($start_sum); ?></td>
 		</tr>
 		<tr>
 			<td>USD</td><td id="USD">0</td>

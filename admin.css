@@ -23,6 +23,7 @@
     background-color: rgba(0,0,0,0.7);
 	text-align: center;
 }
+
 #del,#cha {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
@@ -43,4 +44,6 @@
 #cha:hover,#myForm #sub:active,#myForm #sub:focus {
   background: white;
   color:black;
+
 }
+

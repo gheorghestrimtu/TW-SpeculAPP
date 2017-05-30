@@ -35,7 +35,7 @@
 		</ul>
 	</nav>
 	<div class="already">
-		<p class="center">You won this game. Congratulations!</p>
+		<p class="center">Congratulations, you have won this game! <br><br> Don't hesitate to keep your mastery up, playing another one!</p>
 	</div>
 </body>
 </html>

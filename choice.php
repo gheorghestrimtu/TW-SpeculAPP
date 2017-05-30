@@ -115,19 +115,76 @@
 		</ul>
 	</nav>
 
-<div class="menu1">
-	<div id="upperleft" class="upperleft">
+<main class="inline-block-center">
+	<div id="upperleft">
 	</div>
-	<div class="upperright">
-		<p><?php echo $_SESSION["email"] ?></p>
+	
+	<div id="center">
+		<p style="font-weight: bold; font-size:34px;"> Best players ever: </p>
+		<?php
+			try{
+				$conn=oci_connect('speculapp','SPECULAPP','localhost/XE');
+				if (!$conn) {
+					throw new Exception;
+				}
+				// Prepare the statement
+				$stid = oci_parse($conn, 'SELECT * FROM TOP_TRADERS');
+				if (!$stid) {
+					throw new Exception;
+				}
+				// Perform the logic of the query
+				$r = oci_execute($stid);
+				if (!$r) {
+					throw new Exception;
+				}
+				$statement=oci_parse($conn,'SELECT FIRST_NAME, LAST_NAME FROM USERS WHERE USER_ID=:userid');
+				if (!$statement) {
+					throw new Exception;
+				}
+				echo '<table id="best">';
+				echo '<tr><th><i><u>Name</u></i></th><th><i><u>Win Ratio</u></i></th></tr>';
+				while($row=oci_fetch_array($stid,OCI_NUM)){
+					$userid=$row[0];
+					$ratio=$row[1];
+					oci_bind_by_name($statement,':userid',$userid);
+					$result=oci_execute($statement);
+					if(!$result){
+						throw new Exception;
+					}
+					$arr=oci_fetch_array($statement,OCI_NUM);
+					$name=$arr[0].' '.$arr[1];
+					echo '<tr><td>'.$name.'</td><td>'.$ratio.'</td></tr>';
+				}
+				echo '</table>';
+				oci_free_statement($statement);
+				oci_free_statement($stid);
+			}catch(Exception $e){
+				header("Location: generic_error.php");
+			}
+		?>
+		<div id="buttonlist">
+		<a href="#html" download>
+			<button type="button">Download as HTML</button>
+		</a>
+		<a href="#json" download>
+			<button type="button">Download as JSON</button>
+		</a>
+		<a href="#pdf" download>
+			<button type="button">Download as PDF</button>
+		</a>
+		</div>
+	</div>
+	
+	<div id="upperright">
+		<p style="padding-top: 20px;"><?php echo ("Welcome back, "."<b>".$_SESSION["email"]."</b>"."!") ?></p>
+		<p><?php echo ("<i>"."Isn't it a great day for a profitable day-trading?"."</i>") ?></p>
+		
 		<form action="game.php" method="get">
-			<button class="newgame" type="submit">new game</button>
+			<button class="newgame" type="submit">Start a New Game</button>
 		</form>
 	</div>
-</div>
-<div style="display: none" class="menu2">
-<div class="lowleft"></div>
-<div class="lowright"></div>
-</div>
+	
+</main>
+
 </body>
 </html>
