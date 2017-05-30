@@ -52,7 +52,11 @@
 			if(x.elements[0].value!=""&&x.elements[1].value!=""&&x.elements[2]!=""&&x.elements[3]!="") {return true;}
 			else{
 
+<<<<<<< HEAD
 				document.getElementById("demo").innerHTML="All boxes must be filled!";
+=======
+				document.getElementById("demo").innerHTML="All boxes must be filled";
+>>>>>>> origin/Testing
 				return false;
 			}
 

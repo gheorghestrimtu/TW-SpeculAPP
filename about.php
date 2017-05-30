@@ -2,10 +2,15 @@
 	session_start();
 ?>
 
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
+=======
+<!DOCTYPE html><html>
+>>>>>>> origin/Testing
 <head>
 <title>About</title>
+
 	<link rel="stylesheet" type="text/css" href="navbar.css" />	
 	<link rel="stylesheet" type="text/css" href="about.css" />
 
@@ -39,6 +44,9 @@
 		</ul>
 	</nav>
 
+
+
+  
 <section id="about">
 <b>SpeculAPP</b> este un joc Web care simuleaza operatiuni de specula valutara. <br> <br> <br>
 
