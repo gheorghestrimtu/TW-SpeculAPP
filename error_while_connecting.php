@@ -1,19 +1,18 @@
+<?php
+	session_start();
+?>
 <!DOCTYPE html>
 <html>
-<head><title>Oops...</title>
+<head><title>Connection error</title>
 <link rel="stylesheet" type="text/css" href="navbar.css" />
-<link rel="stylesheet" type="text/css" href="generic_error.css" />
+<link rel="stylesheet" type="text/css" href="error_while_connecting.css" />
 </head>
 <body>
 	<nav>
 		<ul class="navigation">
 			<?php	
 				if(isset($_SESSION["logged"])){
-					if($_SESSION["uid"]==1){
-						echo '<li><a href="admin.php">Home</a></li>';
-					}else{
-						echo '<li><a href="choice.php">Home</a></li>';
-					}
+					echo '<li><a href="choice.php">Home</a></li>';
 				}
 				else{
 					echo '<li><a href="home.php">Home</a></li>';
@@ -31,7 +30,7 @@
 		</ul>
 	</nav>
 <div class="already">
-		<p class="center"> Oops... Looks like something went wrong. Why don't you try again? </p>
+		<p class="center"> Connection error! </p>
 </div>
 </body>
 </html>
