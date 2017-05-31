@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	if (!$_REQUEST["email"]||!$_REQUEST["password"]) { 
-		header("Location: failure.html");
+		header("Location: failure.php");
 	} 
 	try{
 		$connected=connect($_REQUEST["email"],$_REQUEST["password"]);
@@ -10,14 +10,14 @@
 		header("Location: error_while_connecting.php");
 	}
 	if($connected){
-
 		if($_SESSION["uid"]==1){
 			header("Location: admin.php");
 		}else{
 			header("Location: choice.php");
 		}
 	}else{
-		header("Location: no_such_user.html");
+		session_unset();
+		header("Location: no_such_user.php");
 	}
 	function connect($email,$password){
 		$conn=oci_connect('speculapp','SPECULAPP','localhost/XE');

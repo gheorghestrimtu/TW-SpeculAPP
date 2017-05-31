@@ -141,8 +141,14 @@
 				if (!$statement) {
 					throw new Exception;
 				}
+				$myfile = fopen("report.html", "w");
+				$jsonfile=fopen("report.json","w");
+				fwrite($jsonfile,'[');
+				fwrite($myfile,'<!DOCTYPE html><html><head><title>Report</title></head><body>');
+				fwrite($myfile,'<table id="best">');
 				echo '<table id="best">';
 				echo '<tr><th><i><u>Name</u></i></th><th><i><u>Win Ratio</u></i></th></tr>';
+				fwrite($myfile,'<tr><th><i><u>Name</u></i></th><th><i><u>Win Ratio</u></i></th></tr>');
 				while($row=oci_fetch_array($stid,OCI_NUM)){
 					$userid=$row[0];
 					$ratio=$row[1];
@@ -154,8 +160,15 @@
 					$arr=oci_fetch_array($statement,OCI_NUM);
 					$name=$arr[0].' '.$arr[1];
 					echo '<tr><td>'.$name.'</td><td>'.$ratio.'</td></tr>';
+					fwrite($myfile,'<tr><td>'.$name.'</td><td>'.$ratio.'</td></tr>');
+					fwrite($jsonfile,'{"name":"'.$name.'",winratio:'.$ratio.'},');
 				}
 				echo '</table>';
+				fwrite($myfile,'</table>');
+				fwrite($myfile,'</body></html>');
+				fwrite($jsonfile,']');
+				fclose($jsonfile);
+				fclose($myfile);
 				oci_free_statement($statement);
 				oci_free_statement($stid);
 			}catch(Exception $e){
@@ -163,10 +176,10 @@
 			}
 		?>
 		<div id="buttonlist">
-		<a href="#html" download>
+		<a href="report.html" download>
 			<button type="button">Download as HTML</button>
 		</a>
-		<a href="#json" download>
+		<a href="report.json" download>
 			<button type="button">Download as JSON</button>
 		</a>
 		<a href="#pdf" download>
